@@ -1,0 +1,49 @@
+@import "../../vars"
+.main__second
+  background: #e6ebee
+  width: 100%
+  &__inner
+    margin: 10px 0
+    width: 100%
+.backdrop
+  width: 100%
+  height: calc(100vh - 81px )
+  position: fixed
+  border-radius: 10px 10px 0 0
+  bottom: 0
+  left: 0
+  z-index: 100
+  background: white
+  transform: translateZ(0px)
+  transition: transform 0.5s cubic-bezier(0.02, 1.16, 0.51, 0.99)
+  transform-origin: 50% 0
+  overflow: hidden
+  opacity: 0
+  &__title
+    h1
+      font-weight: 500
+    .container
+      align-items: flex-start
+      border-bottom: 1px solid $secondary
+  &__content
+    height: 95%
+    font-size: 20px
+    overflow: scroll
+    .container
+      position: relative
+      align-items: flex-start
+      height: auto
+      padding: 15px
+.backdrop--opened
+  overflow: hidden
+body.backdrop--opened  .main__second__inner
+  filter: blur(5px)
+  transition: filter 0.5s cubic-bezier(0.02, 1.16, 0.51, 0.99)
+#motion-layer
+  width: 100%
+  height: 30%
+  position: absolute
+  background: transparent
+  top: 0
+  left: 0
+  z-index: 999

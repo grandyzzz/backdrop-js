@@ -1,0 +1,59 @@
+@import "../vars"
+header
+  background: white
+  box-shadow: $shadow
+  width: 100%
+.sheader__inner
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: flex-start
+  width: 100%
+  height: 50px
+.content
+  display: flex
+  align-items: center
+  flex-direction: row
+  justify-content: center
+nav
+  width: 100%
+  overflow-x: hidden
+  height: 30px
+  ul
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: flex-start
+    li
+      cursor: pointer
+      margin: 10px
+      white-space: nowrap
+      text-transform: uppercase
+      font-weight: 500
+      font-size: 10px
+      color: $secondary
+      &.active
+        color: #333
+      &:first-child
+        margin-left: 15px
+      &:last-child
+        padding-right: 15px
+.menu
+  position: relative
+  white-space: nowrap
+  overflow-x: auto
+  -webkit-overflow-scrolling: touch
+  -ms-overflow-style: -ms-autohiding-scrollbar
+
+.menu::-webkit-scrollbar
+  display: none
+.active-line
+  position: absolute
+  transform: translateZ(0px)
+  left: 0
+  bottom: 0
+  height: 2px
+  width: 0
+  background: $accent
+  transition: transform 0.3s ease-out, width 0.3s ease-out
+
