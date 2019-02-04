@@ -4,7 +4,38 @@ import FHeader from "../../components/FHeader";
 import ImageLoader from "../../components/ImageLoader";
 import MaterialInput from '../../components/MaterialInput'
 
+
+
 export default class First extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputsData: [
+                {
+                    type: 'text',
+                    tag: 'last_name',
+                    content: 'Фамилия'
+                },
+                {
+                    type: 'text',
+                    tag: 'first_name',
+                    content: 'Имя'
+                },
+                {
+                    type: 'email',
+                    tag: 'email',
+                    content: 'E-mail'
+                },
+                {
+                    type: 'tel',
+                    tag: 'phone',
+                    content: 'Телефон'
+                }
+            ]
+        };
+
+        this.handleInput = this.handleInput.bind(this);
+    }
     render() {
         return (
             <div className="main">
@@ -13,22 +44,19 @@ export default class First extends Component {
                     <section className="info">
                         <h2>Фото</h2>
                         <ImageLoader/>
-                        <MaterialInput
-                            type="text"
-                            tag="last_name"
-                            content="Фамилия"/>
-                        <MaterialInput
-                            type="text"
-                            tag="first_name"
-                            content="Имя"/>
-                        <MaterialInput
-                            type="email"
-                            tag="email"
-                            content="E-mail"/>
-                        <MaterialInput
-                            type="tel"
-                            tag="phone"
-                            content="Телефон"/>
+                        {
+                            this.state.inputsData.map((input, i) => {
+                                let { type, tag, content } = input;
+                                return (
+                                    <MaterialInput
+                                        onInputChanged={this.handleInput}
+                                        type={type}
+                                        tag={tag}
+                                        content={content}
+                                        key={i}/>
+                                )
+                            })
+                        }
                     </section>
                     <section className="passport">
                         <h1>Паспорт</h1>
@@ -63,6 +91,17 @@ export default class First extends Component {
                 </div>
             </div>
         )
+    }
+    handleInput(data) {
+        let index = this.state.inputsData.findIndex(input => input.tag === data.name);
+        this.setState({
+            inputsData: [
+                ...this.state.inputsData.slice(0, index),
+                Object.assign({}, this.state.inputsData[index], { value: data.value }),
+                ...this.state.inputsData.slice(index + 1)
+            ]
+        });
+        console.log(this.state.inputsData)
     }
 
 }

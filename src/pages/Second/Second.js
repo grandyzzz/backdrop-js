@@ -71,6 +71,12 @@ export default class Second extends Component {
     componentDidMount() {
         let backdrop = document.querySelector('.backdrop');
         let motionLayer = document.getElementById('motion-layer');
+        this.closeLayer = document.querySelector('.backdrop-close-layer');
+        this.closeLayer.addEventListener('click', function () {
+            backdrop.style.transform = `translateY(${backdropH}px)`;
+            document.body.classList.remove('backdrop--opened');
+            this.style.display = 'none';
+        });
 
         let backdropH = backdrop.clientHeight;
 
@@ -107,6 +113,7 @@ export default class Second extends Component {
                     if (result > self.realContent) {
                         backdrop.style.transform = 'translateY(' + backdropH + 'px)';
                         document.body.classList.remove('backdrop--opened');
+                        self.closeLayer.style.display = 'none';
                     } else {
                         backdrop.style.transform = 'translateY(' + self.realContent + 'px)'
                     }
@@ -114,6 +121,7 @@ export default class Second extends Component {
                 } else {
                     backdrop.style.transform = 'translateY(' + backdropH + 'px)';
                     document.body.classList.remove('backdrop--opened');
+                    self.closeLayer.style.display = 'none';
                 }
             }
         });
@@ -155,6 +163,9 @@ export default class Second extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="backdrop-close-layer">
+
+                    </div>
                 </div>
             </div>
         )
@@ -173,7 +184,6 @@ export default class Second extends Component {
     showBackdrop() {
         let backdrop = document.querySelector('.backdrop');
 
-
         let titleH = document.querySelector('.backdrop__title').clientHeight;
         let contentH = document.getElementById('backdrop-inner').clientHeight;
         let backdropH = backdrop.clientHeight;
@@ -188,5 +198,9 @@ export default class Second extends Component {
             backdrop.style.transform = 'translateY(' + (backdropH - main) + 'px)';
             this.realContent = backdropH - main
         }
+        this.closeLayer.style.display = 'block';
+
+
+
     }
 }

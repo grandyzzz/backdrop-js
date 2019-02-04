@@ -6,7 +6,7 @@ export default class Home extends Component {
         return (
             <div className="main__inner">
                 <div className="banner">
-                    <h1 className="title">Для полного погружения: DevTools > Toggle device toolbar </h1>
+                    <h1 className="title">Рабочая версия строго с тач девайса: DevTools > Ctrl + Shift + M </h1>
                 </div>
                 <div className="container">
                     <h1 className="title">Test app from Konstantin</h1>
